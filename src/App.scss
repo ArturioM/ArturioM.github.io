@@ -1,0 +1,63 @@
+:root {
+  --loaderCircleColor: var(--color-gray4, #ccc);
+  --loaderCircle2Color: var(--color-primary, #4799e3);
+}
+html[theme='dark'] {
+  --loaderCircleColor: #505050;
+}
+
+.loader-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &--empty {
+    margin-bottom: 30px;
+  }
+
+  &__text {
+    margin-top: 16px;
+    font-family: var(--font-general);
+    font-size: 14px;
+    line-height: 19px;
+    font-style: italic;
+    font-weight: normal;
+    opacity: 0.3;
+  }
+}
+
+.loader {
+  position: relative;
+  display: block;
+  width: 32px;
+  height: 32px;
+
+  &--rotation {
+    animation: rotation 1s infinite linear;
+  }
+
+  &__circle {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--loaderCircleColor);
+    stroke-width: 3px;
+    stroke-linecap: round;
+
+    &--inset {
+      stroke-dasharray: 56;
+      stroke-dashoffset: calc(56 - (56 * var(--loading)) / 100);
+      stroke: var(--loaderCircle2Color);
+    }
+  }
+
+  @keyframes rotation {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(359deg);
+    }
+  }
+}
